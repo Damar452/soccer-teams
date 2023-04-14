@@ -1,7 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SoccerTeam } from 'src/app/core/models/interfaces/teams-response';
+import { AlertService } from 'src/app/core/services/alert/alert.service';
 import { SoccerTeamsService } from 'src/app/core/services/soccer-teams/soccer-teams.service';
 
 @Component({
@@ -19,7 +21,9 @@ export class EquipmentFormComponent implements OnInit {
     private formBuild: FormBuilder, 
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private soccerTeamsService: SoccerTeamsService
+    private soccerTeamsService: SoccerTeamsService,
+    private alertService: AlertService,
+    private datePipe: DatePipe, 
   ) { }
 
   ngOnInit(): void {
@@ -36,32 +40,26 @@ export class EquipmentFormComponent implements OnInit {
     return control?.touched && control.hasError(validator);
   }
 
-  public onCancel(): void{
+  public goToList(): void{
     this.router.navigate(['/dashboard/equipment-list']);
   }
 
   private createTeam(form: SoccerTeam) {
     this.soccerTeamsService.createTeam(form).subscribe({
-      next: (resp) => {
-        console.log(resp)
+      next: () => {
+        this.alertService.successAlert('¡El equipo fue registrado correctamente!');
+        this.goToList();
       },
-      error: (error) => {
-       console.log(error);
-       //alert
-      }
     });
   }
 
   private updateTeam(form: SoccerTeam) {
     form.id = this.idTeam;
     this.soccerTeamsService.updateTeam(form).subscribe({
-      next: (resp) => {
-        console.log(resp)
+      next: () => {
+        this.alertService.successAlert('¡El equipo fue actualizado correctamente!');
+        this.goToList();
       },
-      error: (error) => {
-       console.log(error);
-       //alert
-      }
     });
   }
 
@@ -82,11 +80,8 @@ export class EquipmentFormComponent implements OnInit {
     this.isEdit = true;
     this.soccerTeamsService.getTeamById(this.idTeam).subscribe({
       next: (resp) => {
+        resp.fundacion = this.datePipe.transform(resp.fundacion, 'yyyy-MM-dd')!;
         this.equipmentForm.patchValue(resp);
-      },
-      error: (error) => {
-       console.log(error);
-       //alert
       }
     })
   }

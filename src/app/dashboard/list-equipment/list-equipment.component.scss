@@ -1,5 +1,6 @@
 @import "../../../theme/colors"; 
 
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -11,24 +12,22 @@
 .body {
   font-size: 15px;
   span {
-    font-weight: 600;
+    font-weight: 550;
   }
 }
 
 .filters {
   display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
   flex-wrap: wrap;
+  margin: 0 10px 20px 10px;
+  border-bottom: 1px solid $color-grey;
   &__item {
     display: flex;
-    margin: 0 10px 10px 0;
-    min-width: 30%;
-    justify-content: flex-end;
+    margin: 0 10px 10px 10px;
     button {
-      width: 50%;
+      width: auto;
       margin-top: 15px;
-      align-self:flex-end;
+      align-self: flex-end;
     }
 
     input {
@@ -39,9 +38,15 @@
   }
 }
 
-@media (max-width: 950px) { /* Cambiar a columnas en dispositivos móviles */
+@media (max-width: 736px) {
   .filters {
     flex-direction: column;
+
+    &__item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
   }
 }
 
@@ -51,17 +56,18 @@
   width: 100%;
   label {
     font-size: 14px;
-    color: $color-grey;
+    color: rgb(87, 87, 87);
+    margin-top: 10px;
   }
 }
 
-.form-group .empty-message {
+.empty-message {
   background-color: $color-primary;
   border-radius: 5px;
   display: flex;
   align-items: center;
   height: 40px;
-  width: 90%;
+  width: 100%;
 
   &__text {
     margin: 0 auto;

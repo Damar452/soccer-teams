@@ -2,10 +2,10 @@
     <div class="filters__item">
         <div class="form-group">
             <label for="id">Buscar por ID</label>
-            <input type="text" id="id" formControlName="id" #inputId>
+            <input type="number" id="id" formControlName="id">
         </div>
-
-        <button class="btn btn-secondary" [disabled]="getControl('id')?.value?.length <= 0" (click)="getById()"> Buscar
+        <button class="btn btn-secondary" [disabled]="getControl('id')?.value?.length <= 0" (click)="getById()">
+            Buscar
         </button>
     </div>
 
@@ -27,8 +27,6 @@
         <button class="btn btn-danger" (click)="clearFilters()"> Limpar filtros </button>
     </div>
 </form>
-
-
 
 <div class="card-container">
     <ng-container *ngIf="soccerTeams.length > 0; else elseBlock">
@@ -55,6 +53,9 @@
         </div>
     </ng-template>
 </div>
+
+
+
 
 <div class="paginator-container" *ngIf="hasMultiRegisters">
     <app-paginator [pageSize]="pageSize" [pageIndex]="page" [totalItems]="totalElements"

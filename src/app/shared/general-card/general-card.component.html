@@ -1,5 +1,5 @@
 <div [ngClass]="'card ' + widthClass">
-    <div class="card__header">
+    <div *ngIf="title" class="card__header">
         <h4>{{ title }}</h4>
     </div>
     <div class="card__body">

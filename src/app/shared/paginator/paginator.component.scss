@@ -17,7 +17,10 @@
 }
 
 .paginator-info {
-  margin: 0 16px;
+  margin: 0 10px;
+  padding: 8px 15px;
+  background-color: $color-soft-grey;
+  border-radius: 5px;
 }
 
 .paginator-button:hover {

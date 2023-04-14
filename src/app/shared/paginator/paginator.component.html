@@ -1,6 +1,6 @@
 
 <div class="paginator">
     <button class="paginator-button" [disabled]="isFirstPage" (click)="onPrevPage()">Anterior</button>
-    <p class="paginator-info">{{ pageIndex  }} - {{ totalPages }}</p>
+    <p class="paginator-info">{{ pageIndex  }} / {{ totalPages }}</p>
     <button class="paginator-button" [disabled]="isLastPage" (click)="onNextPage()">Siguiente</button>
 </div>

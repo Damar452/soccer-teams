@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SoccerTeamsService } from 'src/app/core/services/soccer-teams/soccer-teams.service';
 import { DatePipe } from '@angular/common';
 import { SoccerTeam } from 'src/app/core/models/interfaces/teams-response';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from 'src/app/core/services/alert/alert.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { User } from 'src/app/core/models/interfaces/authentication';
@@ -22,6 +22,7 @@ export class ListEquipmentComponent implements OnInit {
   public hasMultiRegisters = true;
   public filtersForm: FormGroup;
   public userSession: User;
+  private idTeam = this.activatedRoute.snapshot.params['id'];
 
   constructor(
     private soccerTeamsService: SoccerTeamsService, 
@@ -29,13 +30,15 @@ export class ListEquipmentComponent implements OnInit {
     private datePipe: DatePipe, 
     private router: Router,
     private alertService: AlertService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.getData();
     this.setForm();
     this.getUser();
+    this.idTeam && this.getCreated();
   }
 
   public getUser() {
@@ -54,7 +57,7 @@ export class ListEquipmentComponent implements OnInit {
       next: (resp) => {
         this.soccerTeams = [resp];
       },
-      error: (error) => {
+      error: () => {
         this.soccerTeams = [];
       }
     })
@@ -79,6 +82,7 @@ export class ListEquipmentComponent implements OnInit {
     this.filtersForm.reset();
     this.getData();
     this.hasMultiRegisters = true;
+    this.idTeam && this.router.navigate(['/dashbooard/equipment-list/']);
   }
 
   public onEdit(id: number): void {
@@ -90,6 +94,11 @@ export class ListEquipmentComponent implements OnInit {
     if(confirmation){
       this.soccerTeamsService.deleteTeam(id).subscribe(()=> this.getData());
     }
+  }
+
+  private getCreated() {
+    this.getControl('id')?.setValue(this.idTeam);
+    this.getById();
   }
 
   private setForm(): void {

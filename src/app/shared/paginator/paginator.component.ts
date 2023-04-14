@@ -9,7 +9,7 @@ export class PaginatorComponent implements OnInit {
 
   @Input() pageSize: number;
   @Input() pageIndex: number;
-  @Input() totalItems: number;
+  @Input() totalItems: number = 1;
 
   @Output() pageIndexChanged = new EventEmitter<number>();
 

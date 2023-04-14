@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/core/models/interfaces/authentication';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.setForm();
   }
 
-  public onLogin(form: any){
+  public onLogin(form: User){
     this.authService.loginUser(form).subscribe( () => {
       this.storageService.saveUser(form);
       this.router.navigate(['/dashboard/equipment-list']);

@@ -12,6 +12,7 @@ import { StorageService } from 'src/app/core/services/storage/storage.service';
 export class HeaderComponent {
 
   public userSession: User;
+  public responsiveClass: string = 'topnav'
 
   constructor(
     private router: Router,
@@ -32,4 +33,9 @@ export class HeaderComponent {
   public getUser() {
     this.userSession = this.storageService.getUser();
   }
+
+  public toggleIcon() {
+    this.responsiveClass = this.responsiveClass === 'topnav' ? 'topnav responsive' : 'topnav';
+  }
+
 }

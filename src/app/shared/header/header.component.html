@@ -1,12 +1,10 @@
-<header class="site-header">
-    <div class="site-identity">
-        <h1>Equipo de Futbol</h1>
-    </div>
-    <nav class="site-navigation">
-        <ul class="nav">
-            <li><a [routerLink]="['/dashboard/equipment-list']" routerLinkActive="link-active">Listado de equipos</a></li>
-            <li *ngIf="userSession"><a [routerLink]="['equipment-register']" routerLinkActive="link-active" >Registrar equipo</a></li>
-            <li *ngIf="userSession"><a (click)="logout()">Cerrar Sesión</a></li>
-        </ul>
-    </nav>
-</header>
+
+<div [ngClass]="responsiveClass" id="myTopnav">
+    <a *ngIf="!userSession" [routerLink]="['/login']" routerLinkActive="active">Iniciar Sesión</a>
+    <a [routerLink]="['/dashboard/equipment-list']" routerLinkActive="active">Listado de equipos</a>
+    <ng-container *ngIf="userSession">
+        <a [routerLink]="['equipment-register']" routerLinkActive="active">Registrar equipo</a>
+        <a (click)="logout()" class="close-session">Cerrar Sesión</a>
+        <a class="icon" (click)="toggleIcon()"><i class="fa fa-bars"></i></a>
+    </ng-container>
+</div>

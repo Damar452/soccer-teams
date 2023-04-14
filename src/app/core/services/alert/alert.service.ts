@@ -22,4 +22,27 @@ export class AlertService {
 
     return confirm?.isConfirmed;
   }
+
+  public successAlert(title: string) {
+    Swal.fire({
+      title,
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1000,
+      customClass: {
+        title: 'alert-success-title'
+      }
+    })
+  }
+
+  public errorAlert(title: string) {
+    Swal.fire({
+      title,
+      icon: 'error',
+      showConfirmButton: true,
+      customClass: {
+        title: 'alert-success-title'
+      }
+    })
+  }
 }

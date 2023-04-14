@@ -10,10 +10,18 @@
                 <ng-container *ngTemplateOutlet="errorMessage;context:{control:'nombre'}"></ng-container>
             </div>
 
-            <div class="form-group">
-                <label for="stadium">Estadio</label>
-                <input type="text" id="stadium" formControlName="estadio">
-                <ng-container *ngTemplateOutlet="errorMessage;context:{control:'estadio'}"></ng-container>
+            <div class="form-group form-group--inline">
+                <div class="inline">
+                    <label for="stadium">Estadio</label>
+                    <input type="text" id="stadium" formControlName="estadio">
+                    <ng-container *ngTemplateOutlet="errorMessage;context:{control:'estadio'}"></ng-container>
+                </div>
+
+                <div class="inline">
+                    <label for="couch">Entrenador</label>
+                    <input type="text" id="couch" formControlName="entrenador">
+                    <ng-container *ngTemplateOutlet="errorMessage;context:{control:'entrenador'}"></ng-container>
+                </div>
             </div>
 
             <div class="form-group">
@@ -22,22 +30,17 @@
                 <ng-container *ngTemplateOutlet="errorMessage;context:{control:'sitioWeb'}"></ng-container>
             </div>
 
-            <div class="form-group">
-                <label for="nationality">Nacionalidad</label>
-                <input type="text" id="nationality" formControlName="nacionalidad">
-                <ng-container *ngTemplateOutlet="errorMessage;context:{control:'nacionalidad'}"></ng-container>
-            </div>
-
-            <div class="form-group">
-                <label for="birthday">Año de fundación</label>
-                <input type="date" id="birthday" formControlName="fundacion">
-                <ng-container *ngTemplateOutlet="errorMessage;context:{control:'fundacion'}"></ng-container>
-            </div>
-
-            <div class="form-group">
-                <label for="couch">Entrenador</label>
-                <input type="text" id="couch" formControlName="entrenador">
-                <ng-container *ngTemplateOutlet="errorMessage;context:{control:'entrenador'}"></ng-container>
+            <div class="form-group form-group--inline">
+                <div class="inline">
+                    <label for="nationality">Nacionalidad</label>
+                    <input type="text" id="nationality" formControlName="nacionalidad">
+                    <ng-container *ngTemplateOutlet="errorMessage;context:{control:'nacionalidad'}"></ng-container>
+                </div>
+                <div class="inline">
+                    <label for="birthday">Año de fundación</label>
+                    <input type="date" id="birthday" formControlName="fundacion">
+                    <ng-container *ngTemplateOutlet="errorMessage;context:{control:'fundacion'}"></ng-container>
+                </div>
             </div>
 
             <div class="form-group form-group--inline">
@@ -55,7 +58,7 @@
             </div>
 
             <div class="btn-group">
-                <button type="reset" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+                <button type="reset" class="btn btn-secondary" (click)="goToList()">Cancelar</button>
                 <button class="btn btn-primary" [disabled]="equipmentForm.invalid">{{ isEdit ? 'Actualizar' : 'Guardar' }}</button>
             </div>
         </form>

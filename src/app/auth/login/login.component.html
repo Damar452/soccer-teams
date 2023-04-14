@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container">
-    <app-general-card  [title]="'Iniciar Sesión'" [widthClass]="'medium'">
+    <app-general-card  [title]="'Iniciar Sesión'" class="card">
         <div class="body">
             <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
                 <div class="form-group">
