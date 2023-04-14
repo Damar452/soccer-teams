@@ -5,39 +5,39 @@
 
         <form [formGroup]="equipmentForm" (ngSubmit)="sendForm(equipmentForm.value)">
             <div class="form-group">
-                <label for="name">Nombre</label>
+                <label class="form-group__label" for="name">Nombre</label>
                 <input class="red-input" type="text" id="name" formControlName="nombre">
                 <ng-container *ngTemplateOutlet="errorMessage;context:{control:'nombre'}"></ng-container>
             </div>
 
             <div class="form-group form-group--inline">
                 <div class="inline">
-                    <label for="stadium">Estadio</label>
+                    <label class="form-group__label" for="stadium">Estadio</label>
                     <input type="text" id="stadium" formControlName="estadio">
                     <ng-container *ngTemplateOutlet="errorMessage;context:{control:'estadio'}"></ng-container>
                 </div>
 
                 <div class="inline">
-                    <label for="couch">Entrenador</label>
+                    <label class="form-group__label" for="couch">Entrenador</label>
                     <input type="text" id="couch" formControlName="entrenador">
                     <ng-container *ngTemplateOutlet="errorMessage;context:{control:'entrenador'}"></ng-container>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="website">Sitio Web</label>
+                <label class="form-group__label" for="website">Sitio Web</label>
                 <input type="text" id="website" formControlName="sitioWeb">
                 <ng-container *ngTemplateOutlet="errorMessage;context:{control:'sitioWeb'}"></ng-container>
             </div>
 
             <div class="form-group form-group--inline">
                 <div class="inline">
-                    <label for="nationality">Nacionalidad</label>
+                    <label class="form-group__label" for="nationality">Nacionalidad</label>
                     <input type="text" id="nationality" formControlName="nacionalidad">
                     <ng-container *ngTemplateOutlet="errorMessage;context:{control:'nacionalidad'}"></ng-container>
                 </div>
                 <div class="inline">
-                    <label for="birthday">Año de fundación</label>
+                    <label class="form-group__label" for="birthday">Año de fundación</label>
                     <input type="date" id="birthday" formControlName="fundacion">
                     <ng-container *ngTemplateOutlet="errorMessage;context:{control:'fundacion'}"></ng-container>
                 </div>
@@ -45,13 +45,13 @@
 
             <div class="form-group form-group--inline">
                 <div class="inline">
-                    <label for="value">Valor</label>
+                    <label class="form-group__label" for="value">Valor</label>
                     <input type="number" id="value" formControlName="valor">
                     <ng-container *ngTemplateOutlet="errorMessage;context:{control:'valor'}"></ng-container>
                 </div>
 
                 <div class="inline">
-                    <label for="capacity">Capacidad</label>
+                    <label class="form-group__label" for="capacity">Capacidad</label>
                     <input type="number" id="capacity" formControlName="capacidad">
                     <ng-container *ngTemplateOutlet="errorMessage;context:{control:'capacidad'}"></ng-container>
                 </div>

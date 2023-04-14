@@ -11,24 +11,30 @@
 
 .body {
   font-size: 15px;
-  span {
-    font-weight: 550;
+  .img {
+    margin: 0 3px -2px 0;
   }
 }
 
 .filters {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 10px 20px 10px;
+  margin: 0 10px 20px 25px;
   border-bottom: 1px solid $color-grey;
+
+  &__btn {
+    width: 80px;
+    margin-top: 15px;
+    align-self: flex-end;
+
+    &--alone {
+      width: 100px;
+    }
+  }
+
   &__item {
     display: flex;
     margin: 0 10px 10px 10px;
-    button {
-      width: auto;
-      margin-top: 15px;
-      align-self: flex-end;
-    }
 
     input {
       width: auto;
