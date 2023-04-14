@@ -1,0 +1,31 @@
+@import "../../../theme/colors"; 
+
+.paginator {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.paginator-button {
+  background-color: $color-primary;
+  color: $color-white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.paginator-info {
+  margin: 0 16px;
+}
+
+.paginator-button:hover {
+  background-color: #8785f6;
+}
+
+.mi-paginator-button:disabled {
+  background-color: #f3f3f3;
+  color: #ccc;
+  cursor: not-allowed;
+}

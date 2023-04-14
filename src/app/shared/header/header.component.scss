@@ -1,0 +1,41 @@
+@import "../../../theme/colors"; 
+
+a {
+  text-decoration: none;
+  color: $color-black;
+  cursor: pointer;
+}
+.site-header {
+  border-bottom: 1px solid $color-grey;
+  background-color: $color-white;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  position: fixed; 
+  top: 0;
+  left: 0; 
+  right: 0;
+  z-index: 999;
+}
+
+.site-identity h1 {
+  font-size: 1.5em;
+  margin: 0.6em 0;
+  display: inline-block;
+}
+
+.site-navigation ul,
+.site-navigation li {
+  margin: 0;
+  padding: 0;
+}
+
+.site-navigation li {
+  display: inline-block;
+  margin: 1em;
+}
+
+.link-active {
+    color: $color-primary;
+}

@@ -1,0 +1,8 @@
+<div [ngClass]="'card ' + widthClass">
+    <div class="card__header">
+        <h4>{{ title }}</h4>
+    </div>
+    <div class="card__body">
+        <ng-content select=".body"></ng-content>
+    </div>
+</div>

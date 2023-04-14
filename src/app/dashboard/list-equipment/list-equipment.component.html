@@ -1,0 +1,62 @@
+<form class="filters" *ngIf="filtersForm" [formGroup]="filtersForm">
+    <div class="filters__item">
+        <div class="form-group">
+            <label for="id">Buscar por ID</label>
+            <input type="text" id="id" formControlName="id" #inputId>
+        </div>
+
+        <button class="btn btn-secondary" [disabled]="getControl('id')?.value?.length <= 0" (click)="getById()"> Buscar
+        </button>
+    </div>
+
+    <div class="filters__item">
+        <div class="form-group">
+            <label for="date-start">Rango inicial</label>
+            <input type="date" id="date-start" formControlName="dateStart">
+        </div>
+        <div class="form-group">
+            <label for="date-end">Rango final</label>
+            <input type="date" id="date-end" formControlName="dateEnd">
+        </div>
+        <button class="btn btn-secondary" (click)="getByDates()"
+            [disabled]="getControl('dateStart')?.value?.length <= 0 || getControl('dateEnd')?.value?.length <= 0">
+            Filtrar </button>
+    </div>
+
+    <div class="filters__item">
+        <button class="btn btn-danger" (click)="clearFilters()"> Limpar filtros </button>
+    </div>
+</form>
+
+
+
+<div class="card-container">
+    <ng-container *ngIf="soccerTeams.length > 0; else elseBlock">
+        <app-general-card *ngFor="let team of soccerTeams" [title]="team.nombre">
+            <div class="body">
+                <p><span>Estadio:</span> {{ team.estadio }}</p>
+                <p><span>Sitio Web:</span> {{ team.sitioWeb }} </p>
+                <p><span>Nacionalidad:</span> {{ team.nacionalidad }} </p>
+                <p><span>Año de Fundación:</span> {{ team.fundacion | date:'MMMM d, y' : 'UTC' }} </p>
+                <p><span>Entrenador:</span> {{ team.entrenador }} </p>
+                <p><span>Capacidad:</span> {{ team.capacidad | number }} </p>
+                <p><span>Valor:</span> ${{ team.valor | number }} </p>
+
+                <div *ngIf="userSession" class="btn-group">
+                    <button type="reset" class="btn btn-danger" (click)="onDelete(team.id)">Eliminar</button>
+                    <button class="btn btn-primary" (click)="onEdit(team.id)">Editar</button>
+                </div>
+            </div>
+        </app-general-card>
+    </ng-container>
+    <ng-template #elseBlock>
+        <div class="empty-message">
+            <h6 class="empty-message__text">¡No se encontraron resultados para esta busqueda!</h6>
+        </div>
+    </ng-template>
+</div>
+
+<div class="paginator-container" *ngIf="hasMultiRegisters">
+    <app-paginator [pageSize]="pageSize" [pageIndex]="page" [totalItems]="totalElements"
+        (pageIndexChanged)="onPageIndexChanged($event)"></app-paginator>
+</div>

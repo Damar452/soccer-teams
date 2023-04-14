@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.container-form {
+  width: 40%;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+
+  &--inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}
+
+.inline {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
+
+@media (max-width: 768px) {
+    .container-form {
+        width: 100%;
+    }
+}
