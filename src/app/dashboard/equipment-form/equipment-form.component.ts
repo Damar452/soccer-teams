@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SoccerTeam } from 'src/app/core/models/interfaces/teams-response';
 import { AlertService } from 'src/app/core/services/alert/alert.service';
 import { SoccerTeamsService } from 'src/app/core/services/soccer-teams/soccer-teams.service';
+import { dateFormat, getMessage } from './equipment-form.consts';
 
 @Component({
   selector: 'app-equipment-form',
@@ -15,6 +16,7 @@ export class EquipmentFormComponent implements OnInit {
 
   public equipmentForm: FormGroup;
   public isEdit: boolean;
+  public actualDate: string;
   private idTeam = this.activatedRoute.snapshot.params['id'];
 
   constructor(
@@ -28,12 +30,12 @@ export class EquipmentFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.setForm();
+    this.getDateActual();
     this.idTeam && this.getSelectedTeamData();
   }
 
-  public sendForm(form: SoccerTeam) {
-    this.isEdit ? this.updateTeam(form) : this.createTeam(form);
-  }
+  public getDateActual(){
+    this.actualDate = this.datePipe.transform(new Date(), dateFormat)!;  }
 
   public getValidation(controlName: string, validator: string) {
     const control = this.equipmentForm.get(controlName);
@@ -44,10 +46,14 @@ export class EquipmentFormComponent implements OnInit {
     this.router.navigate(['/dashboard/equipment-list']);
   }
 
+  public sendForm(form: SoccerTeam) {
+    this.isEdit ? this.updateTeam(form) : this.createTeam(form);
+  }
+
   private createTeam(form: SoccerTeam) {
     this.soccerTeamsService.createTeam(form).subscribe({
       next: () => {
-        this.alertService.successAlert('¡El equipo fue registrado correctamente!');
+        this.alertService.successAlert(getMessage('creado'));
         this.goToList();
       },
     });
@@ -57,7 +63,7 @@ export class EquipmentFormComponent implements OnInit {
     form.id = this.idTeam;
     this.soccerTeamsService.updateTeam(form).subscribe({
       next: () => {
-        this.alertService.successAlert('¡El equipo fue actualizado correctamente!');
+        this.alertService.successAlert(getMessage('actualizado'));
         this.goToList();
       },
     });
@@ -80,7 +86,7 @@ export class EquipmentFormComponent implements OnInit {
     this.isEdit = true;
     this.soccerTeamsService.getTeamById(this.idTeam).subscribe({
       next: (resp) => {
-        resp.fundacion = this.datePipe.transform(resp.fundacion, 'yyyy-MM-dd')!;
+        resp.fundacion = this.datePipe.transform(resp.fundacion, dateFormat)!;
         this.equipmentForm.patchValue(resp);
       }
     })

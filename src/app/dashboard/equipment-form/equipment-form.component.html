@@ -38,7 +38,7 @@
                 </div>
                 <div class="inline">
                     <label class="form-group__label" for="birthday">Año de fundación</label>
-                    <input type="date" id="birthday" formControlName="fundacion">
+                    <input type="date" [max]="actualDate" id="birthday" formControlName="fundacion">
                     <ng-container *ngTemplateOutlet="errorMessage;context:{control:'fundacion'}"></ng-container>
                 </div>
             </div>
